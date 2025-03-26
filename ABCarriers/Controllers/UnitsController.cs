@@ -9,22 +9,22 @@ using ABCarriers.Models;
 
 namespace ABCarriers.Controllers
 {
-    public class CategoriesController : Controller
+    public class UnitsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public CategoriesController(ApplicationDbContext context)
+        public UnitsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Categories
+        // GET: Units
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Categories.ToListAsync());
+            return View(await _context.Units.ToListAsync());
         }
 
-        // GET: Categories/Details/5
+        // GET: Units/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,39 @@ namespace ABCarriers.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Categories
+            var unit = await _context.Units
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (category == null)
+            if (unit == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(unit);
         }
 
-        // GET: Categories/Create
+        // GET: Units/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: Units/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,name,description")] Category category)
+        public async Task<IActionResult> Create([Bind("id,name")] Unit unit)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(category);
+                _context.Add(unit);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(unit);
         }
 
-        // GET: Categories/Edit/5
+        // GET: Units/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace ABCarriers.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null)
+            var unit = await _context.Units.FindAsync(id);
+            if (unit == null)
             {
                 return NotFound();
             }
-            return View(category);
+            return View(unit);
         }
 
-        // POST: Categories/Edit/5
+        // POST: Units/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,name,description")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("id,name")] Unit unit)
         {
-            if (id != category.id)
+            if (id != unit.id)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace ABCarriers.Controllers
             {
                 try
                 {
-                    _context.Update(category);
+                    _context.Update(unit);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(category.id))
+                    if (!UnitExists(unit.id))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace ABCarriers.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(unit);
         }
 
-        // GET: Categories/Delete/5
+        // GET: Units/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,34 +123,34 @@ namespace ABCarriers.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Categories
+            var unit = await _context.Units
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (category == null)
+            if (unit == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(unit);
         }
 
-        // POST: Categories/Delete/5
+        // POST: Units/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
-            if (category != null)
+            var unit = await _context.Units.FindAsync(id);
+            if (unit != null)
             {
-                _context.Categories.Remove(category);
+                _context.Units.Remove(unit);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoryExists(int id)
+        private bool UnitExists(int id)
         {
-            return _context.Categories.Any(e => e.id == id);
+            return _context.Units.Any(e => e.id == id);
         }
     }
 }

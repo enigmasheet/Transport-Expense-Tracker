@@ -11,9 +11,9 @@ namespace ABCarriers.Controllers
 {
     public class LocationsController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public LocationsController(AppDbContext context)
+        public LocationsController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -33,7 +33,7 @@ namespace ABCarriers.Controllers
             }
 
             var location = await _context.Locations
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (location == null)
             {
                 return NotFound();
@@ -53,7 +53,7 @@ namespace ABCarriers.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Location location)
+        public async Task<IActionResult> Create([Bind("id,name")] Location location)
         {
             if (ModelState.IsValid)
             {
@@ -85,9 +85,9 @@ namespace ABCarriers.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Location location)
+        public async Task<IActionResult> Edit(int id, [Bind("id,name")] Location location)
         {
-            if (id != location.Id)
+            if (id != location.id)
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace ABCarriers.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LocationExists(location.Id))
+                    if (!LocationExists(location.id))
                     {
                         return NotFound();
                     }
@@ -124,7 +124,7 @@ namespace ABCarriers.Controllers
             }
 
             var location = await _context.Locations
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (location == null)
             {
                 return NotFound();
@@ -150,7 +150,7 @@ namespace ABCarriers.Controllers
 
         private bool LocationExists(int id)
         {
-            return _context.Locations.Any(e => e.Id == id);
+            return _context.Locations.Any(e => e.id == id);
         }
     }
 }

@@ -31,62 +31,56 @@
                             <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Categories" asp-action="Index">View Categories</a></li>
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Categories" asp-action="Create">Create Category</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Categories" asp-action="Edit">Edit Category</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Categories" asp-action="Delete">Delete Category</a></li>
+                                
                             </ul>
                         </li>
 
                         <!-- Invoice Dropdown -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="invoiceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Invoices
+                            <a class="nav-link dropdown-toggle" href="#" id="invoiceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Invoices
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="invoiceDropdown">
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Invoices" asp-action="Index">View Invoices</a></li>
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Invoices" asp-action="Create">Create Invoice</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Invoices" asp-action="Edit">Edit Invoice</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Invoices" asp-action="Delete">Delete Invoice</a></li>
+                               
                             </ul>
                         </li>
 
-                        <!-- Invoice Item Dropdown -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="invoiceItemDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Invoice Items
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="invoiceItemDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="InvoiceItems" asp-action="Index">View Invoice Items</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="InvoiceItems" asp-action="Create">Create Invoice Item</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="InvoiceItems" asp-action="Edit">Edit Invoice Item</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="InvoiceItems" asp-action="Delete">Delete Invoice Item</a></li>
-                            </ul>
-                        </li>
+                        <!-- Invoice Item Dropdown --> 
+                         <li class="nav-item dropdown"> 
+                             <a class="nav-link dropdown-toggle" href="#" id="invoiceItemDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 
+                                 Units 
+                             </a>
+                             <ul class="dropdown-menu" aria-labelledby="invoiceItemDropdown"> 
+                                 <li><a class="dropdown-item" asp-area="" asp-controller="Units" asp-action="Index">View Units</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Units" asp-action="Create">Create Unit</a></li>
+                                
+                            </ul> 
+                         </li> 
 
-                        <!-- Location Dropdown -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="locationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Locations
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="locationDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Locations" asp-action="Index">View Locations</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Locations" asp-action="Create">Create Location</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Locations" asp-action="Edit">Edit Location</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Locations" asp-action="Delete">Delete Location</a></li>
-                            </ul>
-                        </li>
+                         <!-- Location Dropdown --> 
+                         <li class="nav-item dropdown"> 
+                             <a class="nav-link dropdown-toggle" href="#" id="locationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 
+                                 Locations 
+                             </a> 
+                             <ul class="dropdown-menu" aria-labelledby="locationDropdown"> 
+                                 <li><a class="dropdown-item" asp-area="" asp-controller="Locations" asp-action="Index">View Locations</a></li> 
+                                 <li><a class="dropdown-item" asp-area="" asp-controller="Locations" asp-action="Create">Create Location</a></li> 
+                                 
+                             </ul> 
+                         </li> 
 
-                        <!-- Vendor Dropdown -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="vendorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Vendors
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="vendorDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Vendors" asp-action="Index">View Vendors</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Vendors" asp-action="Create">Create Vendor</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Vendors" asp-action="Edit">Edit Vendor</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Vendors" asp-action="Delete">Delete Vendor</a></li>
-                            </ul>
-                        </li>
+                         <!-- Vendor Dropdown --> 
+                         <li class="nav-item dropdown"> 
+                             <a class="nav-link dropdown-toggle" href="#" id="vendorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 
+                                 Vendors 
+                             </a> 
+                             <ul class="dropdown-menu" aria-labelledby="vendorDropdown"> 
+                                 <li><a class="dropdown-item" asp-area="" asp-controller="Vendors" asp-action="Index">View Vendors</a></li> 
+                                 <li><a class="dropdown-item" asp-area="" asp-controller="Vendors" asp-action="Create">Create Vendor</a></li> 
+                                 
+                             </ul> 
+                         </li> 
 
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

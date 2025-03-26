@@ -1,7 +1,8 @@
-﻿@model IEnumerable<ABCarriers.Models.Invoice>
-
+﻿@model IEnumerable<ABCarriers.Models.view_report>
 @{
     ViewData["Title"] = "Index";
+    int sno = 1; // Initialize Serial Number
+
 }
 
 <h1>Index</h1>
@@ -12,53 +13,103 @@
 <table class="table">
     <thead>
         <tr>
+            <th>S No</th>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.miti)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Miti)
+                @Html.DisplayNameFor(model => model.invoice_no)
+            </th> 
+            
+            <th>
+                @Html.DisplayNameFor(model => model.vat_no)
+            </th>
+
+            
+            <th>
+                @Html.DisplayNameFor(model => model.category_name)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.InvoiceNo)
+                @Html.DisplayNameFor(model => model.location_id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Category)
+                @Html.DisplayNameFor(model => model.quantity)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Location)
+                @Html.DisplayNameFor(model => model.rate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vendor)
+                @Html.DisplayNameFor(model => model.taxable_amount)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.vat_amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.total_amount)
+            </th>
+
+         
+            <th>
+                @Html.DisplayNameFor(model => model.unit_name)
+            </th>
+          
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td><td>
-                @Html.DisplayFor(modelItem => item.Miti)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InvoiceNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vendor.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model) {
+            <tr>
+                <td>@sno</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.miti)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.invoice_no)
+                </td> 
+                <td>
+                    @Html.DisplayFor(modelItem => item.vat_no)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.category_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.location_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.rate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.taxable_amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.vat_amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.total_amount)
+                </td>
+
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.unit_name)
+                </td>
+                
+                @* <td> *@
+                @*     <a asp-action="Edit" asp-route-id="@item.id">Edit</a> | *@
+                @*     <a asp-action="Details" asp-route-id="@item.id">Details</a> | *@
+                @*     <a asp-action="Delete" asp-route-id="@item.id">Delete</a> *@
+                @* </td> *@
+            </tr>
+            sno++;
+        }
     </tbody>
 </table>

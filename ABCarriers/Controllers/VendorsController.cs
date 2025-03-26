@@ -11,9 +11,9 @@ namespace ABCarriers.Controllers
 {
     public class VendorsController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public VendorsController(AppDbContext context)
+        public VendorsController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -21,8 +21,8 @@ namespace ABCarriers.Controllers
         // GET: Vendors
         public async Task<IActionResult> Index()
         {
-            var appDbContext = _context.Vendors.Include(v => v.Location);
-            return View(await appDbContext.ToListAsync());
+            var applicationDbContext = _context.Vendors.Include(v => v.location);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Vendors/Details/5
@@ -34,8 +34,8 @@ namespace ABCarriers.Controllers
             }
 
             var vendor = await _context.Vendors
-                .Include(v => v.Location)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(v => v.location)
+                .FirstOrDefaultAsync(m => m.id == id);
             if (vendor == null)
             {
                 return NotFound();
@@ -47,7 +47,7 @@ namespace ABCarriers.Controllers
         // GET: Vendors/Create
         public IActionResult Create()
         {
-            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id");
+            ViewData["location_id"] = new SelectList(_context.Locations, "id", "id");
             return View();
         }
 
@@ -56,7 +56,7 @@ namespace ABCarriers.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,VatNo,Name,LocationId,Contact,Email")] Vendor vendor)
+        public async Task<IActionResult> Create([Bind("id,vat_no,name,location_id,contact,email")] Vendor vendor)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +64,7 @@ namespace ABCarriers.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id", vendor.LocationId);
+            ViewData["location_id"] = new SelectList(_context.Locations, "id", "id", vendor.location_id);
             return View(vendor);
         }
 
@@ -81,7 +81,7 @@ namespace ABCarriers.Controllers
             {
                 return NotFound();
             }
-            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id", vendor.LocationId);
+            ViewData["location_id"] = new SelectList(_context.Locations, "id", "id", vendor.location_id);
             return View(vendor);
         }
 
@@ -90,9 +90,9 @@ namespace ABCarriers.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,VatNo,Name,LocationId,Contact,Email")] Vendor vendor)
+        public async Task<IActionResult> Edit(int id, [Bind("id,vat_no,name,location_id,contact,email")] Vendor vendor)
         {
-            if (id != vendor.Id)
+            if (id != vendor.id)
             {
                 return NotFound();
             }
@@ -106,7 +106,7 @@ namespace ABCarriers.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VendorExists(vendor.Id))
+                    if (!VendorExists(vendor.id))
                     {
                         return NotFound();
                     }
@@ -117,7 +117,7 @@ namespace ABCarriers.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id", vendor.LocationId);
+            ViewData["location_id"] = new SelectList(_context.Locations, "id", "id", vendor.location_id);
             return View(vendor);
         }
 
@@ -130,8 +130,8 @@ namespace ABCarriers.Controllers
             }
 
             var vendor = await _context.Vendors
-                .Include(v => v.Location)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(v => v.location)
+                .FirstOrDefaultAsync(m => m.id == id);
             if (vendor == null)
             {
                 return NotFound();
@@ -157,7 +157,7 @@ namespace ABCarriers.Controllers
 
         private bool VendorExists(int id)
         {
-            return _context.Vendors.Any(e => e.Id == id);
+            return _context.Vendors.Any(e => e.id == id);
         }
     }
 }

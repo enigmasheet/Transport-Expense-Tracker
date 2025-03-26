@@ -3,11 +3,13 @@ using System.Collections.Generic;
 
 namespace ABCarriers.Models;
 
-public partial class Location
+public partial class Unit
 {
     public int id { get; set; }
 
     public string name { get; set; } = null!;
+
+    public string? description { get; set; }
 
     public DateTime? created_at { get; set; }
 
@@ -17,5 +19,5 @@ public partial class Location
 
     public int? updated_by { get; set; }
 
-    public virtual ICollection<Vendor> Vendors { get; set; } = new List<Vendor>();
+    public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
 }

@@ -13,7 +13,7 @@ namespace ABCarriers
             builder.Services.AddControllersWithViews();
 
             // Register AppDbContext with dependency injection
-            builder.Services.AddDbContext<AppDbContext>(options =>
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();

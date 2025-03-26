@@ -11,9 +11,9 @@ namespace ABCarriers.Controllers
 {
     public class InvoicesController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public InvoicesController(AppDbContext context)
+        public InvoicesController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -21,8 +21,7 @@ namespace ABCarriers.Controllers
         // GET: Invoices
         public async Task<IActionResult> Index()
         {
-            var appDbContext = _context.Invoices.Include(i => i.Category).Include(i => i.Location).Include(i => i.Vendor);
-            return View(await appDbContext.ToListAsync());
+            return View(await _context.ViewReports.ToListAsync()); 
         }
 
         // GET: Invoices/Details/5
@@ -34,10 +33,10 @@ namespace ABCarriers.Controllers
             }
 
             var invoice = await _context.Invoices
-                .Include(i => i.Category)
-                .Include(i => i.Location)
-                .Include(i => i.Vendor)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(i => i.category)
+                .Include(i => i.unit)
+                .Include(i => i.vendor)
+                .FirstOrDefaultAsync(m => m.id == id);
             if (invoice == null)
             {
                 return NotFound();
@@ -49,9 +48,9 @@ namespace ABCarriers.Controllers
         // GET: Invoices/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id");
-            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id");
-            ViewData["VendorId"] = new SelectList(_context.Vendors, "Id", "Id");
+            ViewData["category_id"] = new SelectList(_context.Categories, "id", "id");
+            ViewData["unit_id"] = new SelectList(_context.Units, "id", "id");
+            ViewData["vendor_id"] = new SelectList(_context.Vendors, "id", "id");
             return View();
         }
 
@@ -60,7 +59,7 @@ namespace ABCarriers.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Miti,InvoiceNo,VendorId,LocationId,CategoryId")] Invoice invoice)
+        public async Task<IActionResult> Create([Bind("id,miti,invoice_no,vendor_id,location_id,category_id,quantity,rate,taxable_amount,vat_amount,total_amount,unit_id")] Invoice invoice)
         {
             if (ModelState.IsValid)
             {
@@ -68,9 +67,9 @@ namespace ABCarriers.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", invoice.CategoryId);
-            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id", invoice.LocationId);
-            ViewData["VendorId"] = new SelectList(_context.Vendors, "Id", "Id", invoice.VendorId);
+            ViewData["category_id"] = new SelectList(_context.Categories, "id", "id", invoice.category_id);
+            ViewData["unit_id"] = new SelectList(_context.Units, "id", "id", invoice.unit_id);
+            ViewData["vendor_id"] = new SelectList(_context.Vendors, "id", "id", invoice.vendor_id);
             return View(invoice);
         }
 
@@ -87,9 +86,9 @@ namespace ABCarriers.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", invoice.CategoryId);
-            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id", invoice.LocationId);
-            ViewData["VendorId"] = new SelectList(_context.Vendors, "Id", "Id", invoice.VendorId);
+            ViewData["category_id"] = new SelectList(_context.Categories, "id", "id", invoice.category_id);
+            ViewData["unit_id"] = new SelectList(_context.Units, "id", "id", invoice.unit_id);
+            ViewData["vendor_id"] = new SelectList(_context.Vendors, "id", "id", invoice.vendor_id);
             return View(invoice);
         }
 
@@ -98,9 +97,9 @@ namespace ABCarriers.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Miti,InvoiceNo,VendorId,LocationId,CategoryId")] Invoice invoice)
+        public async Task<IActionResult> Edit(int id, [Bind("id,miti,invoice_no,vendor_id,location_id,category_id,quantity,rate,taxable_amount,vat_amount,total_amount,unit_id")] Invoice invoice)
         {
-            if (id != invoice.Id)
+            if (id != invoice.id)
             {
                 return NotFound();
             }
@@ -114,7 +113,7 @@ namespace ABCarriers.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!InvoiceExists(invoice.Id))
+                    if (!InvoiceExists(invoice.id))
                     {
                         return NotFound();
                     }
@@ -125,9 +124,9 @@ namespace ABCarriers.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", invoice.CategoryId);
-            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id", invoice.LocationId);
-            ViewData["VendorId"] = new SelectList(_context.Vendors, "Id", "Id", invoice.VendorId);
+            ViewData["category_id"] = new SelectList(_context.Categories, "id", "id", invoice.category_id);
+            ViewData["unit_id"] = new SelectList(_context.Units, "id", "id", invoice.unit_id);
+            ViewData["vendor_id"] = new SelectList(_context.Vendors, "id", "id", invoice.vendor_id);
             return View(invoice);
         }
 
@@ -140,10 +139,10 @@ namespace ABCarriers.Controllers
             }
 
             var invoice = await _context.Invoices
-                .Include(i => i.Category)
-                .Include(i => i.Location)
-                .Include(i => i.Vendor)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(i => i.category)
+                .Include(i => i.unit)
+                .Include(i => i.vendor)
+                .FirstOrDefaultAsync(m => m.id == id);
             if (invoice == null)
             {
                 return NotFound();
@@ -169,7 +168,7 @@ namespace ABCarriers.Controllers
 
         private bool InvoiceExists(int id)
         {
-            return _context.Invoices.Any(e => e.Id == id);
+            return _context.Invoices.Any(e => e.id == id);
         }
     }
 }

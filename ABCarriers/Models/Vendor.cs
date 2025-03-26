@@ -5,19 +5,27 @@ namespace ABCarriers.Models;
 
 public partial class Vendor
 {
-    public int Id { get; set; }
+    public int id { get; set; }
 
-    public string VatNo { get; set; } = null!;
+    public string vat_no { get; set; } = null!;
 
-    public string Name { get; set; } = null!;
+    public string name { get; set; } = null!;
 
-    public int? LocationId { get; set; }
+    public int? location_id { get; set; }
 
-    public string? Contact { get; set; }
+    public string? contact { get; set; }
 
-    public string? Email { get; set; }
+    public string? email { get; set; }
+
+    public DateTime? created_at { get; set; }
+
+    public DateTime? updated_at { get; set; }
+
+    public int? created_by { get; set; }
+
+    public int? updated_by { get; set; }
 
     public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
 
-    public virtual Location? Location { get; set; }
+    public virtual Location? location { get; set; }
 }
