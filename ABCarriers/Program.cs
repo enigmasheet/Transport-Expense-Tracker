@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using ABCarriers.Models;
+
 namespace ABCarriers
 {
     public class Program
@@ -8,6 +11,10 @@ namespace ABCarriers
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            // Register AppDbContext with dependency injection
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
