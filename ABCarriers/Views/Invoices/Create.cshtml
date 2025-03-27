@@ -14,7 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="miti" class="control-label"></label>
-                <input asp-for="miti" class="form-control" />
+                <input asp-for="miti" class="form-control" id="miti"  placeholder="YYYY/MM/DD" />
                 <span asp-validation-for="miti" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -78,4 +78,17 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            // Initialize the Nepali Date Picker
+            $("#miti").nepaliDatePicker({
+                dateFormat: "%y-%m-%d",
+                closeOnDateSelect: true,
+                minDate: "२०००-०१-०१",
+                maxDate: "२०८०-१२-३०"
+            });
+        });
+    </script>
+   
+    
 }
