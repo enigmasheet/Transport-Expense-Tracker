@@ -5,7 +5,7 @@ namespace ABCarriers.Models;
 
 public partial class Location
 {
-    public int id { get; set; }
+    public int izd { get; set; }
 
     public string name { get; set; } = null!;
 

@@ -11,9 +11,6 @@ namespace ABCarriers
 
             try
             {
-                // Load the appropriate appsettings file for the environment
-                var environment = builder.Environment.EnvironmentName;
-
                 // Add services to the container.
                 builder.Services.AddControllersWithViews();
 
