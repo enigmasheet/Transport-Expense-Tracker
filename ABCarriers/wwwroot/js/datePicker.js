@@ -1,10 +1,11 @@
 ﻿$(document).ready(function () {
-    // Initialize Nepali Date Picker
+
+    // Initialize Datepicker with options
     $('#miti').nepaliDatePicker({
-        dateFormat: "%y-%m-%d",
-        closeOnDateSelect: true,
-        defaultDate: "",               // Set a default date (optional)
-        minDate: "२०००-०१-०१",
-        maxDate: "२०८०-१२-३०"
+        ndpYear: true,          // Enable Year selection
+        ndpMonth: true,         // Enable Month selection
+        ndpYearCount: 10,       // Number of years to display in the dropdown
+        language: "english",    // Set the language to English
+        dateFormat: "DD/MM/YYYY"
     });
 });

@@ -48,9 +48,9 @@ namespace ABCarriers.Controllers
         // GET: Invoices/Create
         public IActionResult Create()
         {
-            ViewData["category_id"] = new SelectList(_context.Categories, "id", "id");
-            ViewData["unit_id"] = new SelectList(_context.Units, "id", "id");
-            ViewData["vendor_id"] = new SelectList(_context.Vendors, "id", "id");
+            ViewData["category_id"] = new SelectList(_context.Categories, "id", "name");
+            ViewData["unit_id"] = new SelectList(_context.Units, "id", "name");
+            ViewData["vendor_id"] = new SelectList(_context.Vendors, "id", "name");
             return View();
         }
 
@@ -67,9 +67,9 @@ namespace ABCarriers.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["category_id"] = new SelectList(_context.Categories, "id", "id", invoice.category_id);
-            ViewData["unit_id"] = new SelectList(_context.Units, "id", "id", invoice.unit_id);
-            ViewData["vendor_id"] = new SelectList(_context.Vendors, "id", "id", invoice.vendor_id);
+            ViewData["category_id"] = new SelectList(_context.Categories, "id", "name", invoice.category_id);
+            ViewData["unit_id"] = new SelectList(_context.Units, "id", "name", invoice.unit_id);
+            ViewData["vendor_id"] = new SelectList(_context.Vendors, "id", "name", invoice.vendor_id);
             return View(invoice);
         }
 

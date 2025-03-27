@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Helper\DataHelper.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="jQuery" Version="3.7.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.3">
       <PrivateAssets>all</PrivateAssets>
@@ -30,7 +26,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
-    <PackageReference Include="NepaliDateConverter.NETCORE" Version="1.0.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Select2.js" Version="4.0.13" />
     <PackageReference Include="System.Linq" Version="4.3.0" />
@@ -38,12 +33,9 @@
 
   <ItemGroup>
     <Folder Include="Converter\" />
+    <Folder Include="Helper\" />
     <Folder Include="Services\" />
     <Folder Include="ViewModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Helper\DataHelper.cs" />
   </ItemGroup>
 
 </Project>

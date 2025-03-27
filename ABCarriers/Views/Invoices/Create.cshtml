@@ -78,17 +78,6 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script>
-        $(document).ready(function () {
-            // Initialize the Nepali Date Picker
-            $("#miti").nepaliDatePicker({
-                dateFormat: "%y-%m-%d",
-                closeOnDateSelect: true,
-                minDate: "२०००-०१-०१",
-                maxDate: "२०८०-१२-३०"
-            });
-        });
-    </script>
    
     
 }
